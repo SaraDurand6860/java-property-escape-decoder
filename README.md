@@ -23,3 +23,10 @@ The trade-off: this is a pure decoder. It does not split `.properties` files int
 ## Exports
 
 `decode(text: str) -> str` — the only public function.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
